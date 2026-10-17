@@ -86,7 +86,20 @@ document.getElementById("openCart").addEventListener("click",()=>{renderCart();m
 document.getElementById("closeCart").addEventListener("click",()=>modal.classList.remove("open"));
 modal.addEventListener("click",e=>{if(e.target===modal)modal.classList.remove("open")});
 document.getElementById("cartItems").addEventListener("click",e=>{const b=e.target.closest("[data-qty]");if(!b)return;const id=Number(b.dataset.qty),next=(cart.get(id)||0)+Number(b.dataset.delta);if(next<=0)cart.delete(id);else cart.set(id,next);renderCart()});
-document.getElementById("checkout").addEventListener("click",()=>{if(!cart.size)return;const order=[...cart.entries()].map(([id,n])=>({p:products.find(x=>x.id===id),n})).filter(x=>x.p);const total=order.reduce((sum,x)=>sum+x.p.price*x.n,0);const ref="SCB-"+Date.now().toString(36).toUpperCase();const lines=order.map(x=>"> "+x.n+" × "+x.p.name+" — "+money(x.p.price*x.n));const log=document.getElementById("purchaseLog");log.innerHTML='<span> &gt; Initialisiere Handelsprotokoll...</span>\n\n<span> &gt; Verkäufer: <span class="ok">MU SmilingCoastBrigade</span></span>\n\n<span> &gt; Bestellnummer: <span class="ok">'+ref+'</span></span>\n\n<span> &gt; Warenkorb:\n'+lines.map(s=>s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")).join("\n")+'</span>\n\n<span> &gt; Gesamtwert: <span class="ok">'+money(total)+'</span></span>\n\n<span class="warn"> &gt; DEMO: Keine echten Waren oder Spielwerte übertragen.</span>\n\n<span> &gt; Weiterleitung zu WarEra wird vorbereitet...</span>';document.getElementById("purchaseTerminal").classList.add("open");modal.classList.remove("open");cart.clear();renderCart();document.getElementById("checkoutNote").textContent="Demo-Bestellung "+ref+" erstellt.";window.setTimeout(()=>{window.location.href="https://app.warera.io/country/6873d0ea1758b40e712b5ee7"},5000)});document.getElementById("closeTerminal").addEventListener("click",()=>document.getElementById("purchaseTerminal").classList.remove("open"));document.getElementById("wareraRedirect").addEventListener("click",()=>{window.location.href="https://app.warera.io/country/6873d0ea1758b40e712b5ee7"});
+document.getElementById("checkout").addEventListener("click",()=>{if(!cart.size)return;const order=[...cart.entries()].map(([id,n])=>({p:products.find(x=>x.id===id),n})).filter(x=>x.p);const total=order.reduce((sum,x)=>sum+x.p.price*x.n,0);const ref="SCB-"+Date.now().toString(36).toUpperCase();const lines=order.map(x=>"> "+x.n+" × "+x.p.name+" — "+money(x.p.price*x.n));const log=document.getElementById("purchaseLog");log.innerHTML=`<span> &gt; Initialisiere Handelsprotokoll...</span>
+
+<span> &gt; Verkäufer: <span class="ok">MU SmilingCoastBrigade</span></span>
+
+<span> &gt; Bestellnummer: <span class="ok">${ref}</span></span>
+
+<span> &gt; Warenkorb:
+${lines.map(s=>s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")).join("\n")}</span>
+
+<span> &gt; Gesamtwert: <span class="ok">${money(total)}</span></span>
+
+<span class="warn"> &gt; DEMO: Keine echten Waren oder Spielwerte übertragen.</span>
+
+<span> &gt; Weiterleitung zu WarEra wird vorbereitet...</span>`;document.getElementById("purchaseTerminal").classList.add("open");modal.classList.remove("open");cart.clear();renderCart();document.getElementById("checkoutNote").textContent="Demo-Bestellung "+ref+" erstellt.";window.setTimeout(()=>{window.location.href="https://app.warera.io/country/6873d0ea1758b40e712b5ee7"},5000)});document.getElementById("closeTerminal").addEventListener("click",()=>document.getElementById("purchaseTerminal").classList.remove("open"));document.getElementById("wareraRedirect").addEventListener("click",()=>{window.location.href="https://app.warera.io/country/6873d0ea1758b40e712b5ee7"});
 document.getElementById("browseBtn").addEventListener("click",()=>document.getElementById("market").scrollIntoView({behavior:"smooth"}));
 document.getElementById("manifestBtn").addEventListener("click",()=>alert("LIDEL-MANIFEST // 1. Alle Preise sind fiktiv. 2. Keine echten Geldzahlungen. 3. Keine echte Verbindung zu WarEra. 4. Der Kunde hat immer recht — außer beim Schwarzmarkt-Rabatt."));
 document.addEventListener("keydown",e=>{if(e.key==="Escape")modal.classList.remove("open")});
