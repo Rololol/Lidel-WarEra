@@ -141,6 +141,40 @@ body:after{content:"";position:fixed;inset:0;z-index:89;pointer-events:none;back
 @keyframes signalSweep{0%,72%,100%{left:-120%}84%{left:150%}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation:none!important;transition:none!important}body:before{opacity:.18}}
 
+
+/* DEEP SIGNAL / terminal interference */
+:root{--signal:#a3ff68;--signal-blue:#80cfff;--signal-dim:#456a4b}
+#signalRain{position:fixed;inset:0;width:100%;height:100%;z-index:1;pointer-events:none;opacity:.13;mix-blend-mode:screen}
+.topbar,main,.footer,.ticker{position:relative;z-index:2}
+.topbar{isolation:isolate}
+.hero h1{position:relative;animation:headingNoise 8s steps(1,end) infinite}
+.hero h1 span{color:var(--signal);text-shadow:0 0 12px #a3ff682b}
+.terminal{border-color:#37583d;box-shadow:0 0 0 1px #a3ff6808,0 18px 70px #0009,inset 0 0 45px #a3ff680b}
+.termhead{background:linear-gradient(90deg,#111d14,#07100b);border-bottom-color:#304b34}
+.termhead b:before{content:"● ";font-size:8px}
+.termline{position:relative;padding-left:2px}
+.termline em{ text-shadow:0 0 8px #a3ff6840}
+.terminal .termline:nth-child(2n){border-left:1px solid #a3ff6828;padding-left:8px}
+.product-card{isolation:isolate;box-shadow:0 7px 28px #0004}
+.product-card:before{content:"";position:absolute;inset:0;pointer-events:none;z-index:1;opacity:0;background:linear-gradient(transparent 48%,#a3ff6810 50%,transparent 52%);background-size:100% 7px;transition:opacity .2s}
+.product-card:hover:before{opacity:1}
+.product-top span:first-child{font-variant-numeric:tabular-nums}
+.product-tag{box-shadow:inset 0 0 10px #a3ff6807}
+.catalog-tab.active{box-shadow:inset 0 0 16px #a3ff6810,0 0 10px #a3ff6808}
+.signal-readout{position:relative;overflow:hidden}
+.signal-readout:after{content:"";position:absolute;top:0;bottom:0;width:24%;left:-30%;background:linear-gradient(90deg,transparent,#a3ff6810,transparent);animation:readoutSweep 6s linear infinite;pointer-events:none}
+.ticker{position:relative;background:#050b07}
+.ticker b{color:var(--signal);text-shadow:0 0 8px #a3ff6877}
+.footer{border-top:1px solid #203326}
+.footer strong{color:var(--signal);text-shadow:0 0 12px #a3ff6822}
+.navstatus{border-color:#395a3e;background:#0b150d;box-shadow:0 0 12px #a3ff6808}
+.checkout-window{box-shadow:0 0 0 1px #a3ff6810,0 25px 100px #000d,inset 0 0 55px #a3ff6808}
+.checkout-head span:first-child:before{content:"● ";color:var(--signal);font-size:10px}
+@keyframes headingNoise{0%,94%,96%,100%{transform:translateX(0);text-shadow:0 0 24px rgba(128,207,255,.08)}95%{transform:translateX(1px);text-shadow:-2px 0 #80cfff,2px 0 #a3ff68}}
+@keyframes readoutSweep{0%{left:-30%}55%,100%{left:120%}}
+@media(max-width:800px){#signalRain{opacity:.075}.hero h1{animation:none}}
+@media(prefers-reduced-motion:reduce){#signalRain{display:none}.hero h1{animation:none}.signal-readout:after{animation:none}}
+
 </style>
 </head>
 <body>
@@ -287,6 +321,40 @@ window.addEventListener("load",initializeLidelCatalog,{once:true});
  };
  updateSignal();
  setInterval(updateSignal,2300);
+})();
+
+
+// Low-intensity matrix rain: decorative canvas only, no network or tracking.
+(function initMatrixRain(){
+ if(window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches)return;
+ const canvas=document.createElement("canvas");
+ canvas.id="signalRain";canvas.setAttribute("aria-hidden","true");
+ document.body.prepend(canvas);
+ const ctx=canvas.getContext("2d");if(!ctx)return;
+ const glyphs="01アイウエオカキクケコサシスセソ<>/{}[]#*+-=ABCDEF";
+ let width=0,height=0,drops=[],fontSize=15,raf=0,last=0;
+ function resize(){
+  const dpr=Math.min(window.devicePixelRatio||1,1.5);
+  width=window.innerWidth;height=window.innerHeight;
+  canvas.width=Math.floor(width*dpr);canvas.height=Math.floor(height*dpr);
+  canvas.style.width=width+"px";canvas.style.height=height+"px";
+  ctx.setTransform(dpr,0,0,dpr,0,0);fontSize=15;
+  drops=Array.from({length:Math.ceil(width/fontSize)},()=>Math.random()*-height/fontSize);
+ }
+ function draw(time){
+  raf=requestAnimationFrame(draw);
+  if(time-last<75)return;last=time;
+  ctx.clearRect(0,0,width,height);ctx.font=fontSize+"px monospace";
+  for(let i=0;i<drops.length;i++){
+   const ch=glyphs[Math.floor(Math.random()*glyphs.length)];
+   const y=drops[i]*fontSize;
+   ctx.fillStyle=Math.random()>.94?"rgba(128,207,255,.8)":"rgba(163,255,104,.72)";
+   ctx.fillText(ch,i*fontSize,y);
+   if(y>height&&Math.random()>.975)drops[i]=Math.random()*-16;
+   drops[i]+=.28+Math.random()*.38;
+  }
+ }
+ resize();window.addEventListener("resize",resize,{passive:true});raf=requestAnimationFrame(draw);
 })();
 
 </script>
