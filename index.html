@@ -112,6 +112,35 @@ body{line-height:1.65;letter-spacing:.05px}
  .redacted{display:inline-block;background:#29312b;color:#29312b;letter-spacing:2px;filter:blur(1.8px);user-select:none;border-radius:2px;padding:0 3px}.hero p .redacted{font-family:monospace;font-size:.9em}
 .seller-glitch{display:inline-block;white-space:nowrap;max-width:100%;font-family:monospace;font-size:clamp(10px,3.1vw,16px);letter-spacing:0;text-shadow:0 0 7px rgba(166,255,104,.28);overflow-wrap:normal;word-break:normal;vertical-align:baseline}
 .product-thumb.product-photo{object-fit:contain;image-rendering:auto;padding:0;background:#050a12}
+
+/* SIGNAL LAYER / obfuscated public mirror */
+:root{--signal:#a3ff68;--signal-blue:#80cfff}
+html{scroll-behavior:smooth}
+body{background-image:linear-gradient(rgba(90,255,130,.018) 1px,transparent 1px),linear-gradient(90deg,rgba(90,255,130,.018) 1px,transparent 1px);background-size:34px 34px;background-position:center top}
+body:before{content:"";position:fixed;inset:0;z-index:90;pointer-events:none;background:repeating-linear-gradient(0deg,rgba(0,0,0,0) 0px,rgba(0,0,0,0) 3px,rgba(0,0,0,.16) 4px);opacity:.42}
+body:after{content:"";position:fixed;inset:0;z-index:89;pointer-events:none;background:radial-gradient(ellipse at center,transparent 48%,rgba(0,0,0,.42) 100%);box-shadow:inset 0 0 100px rgba(90,255,130,.035)}
+.topline{height:3px;background:linear-gradient(90deg,#a3ff68 0%,#a3ff68 14%,transparent 14%,transparent 20%,#80cfff 20%,#80cfff 23%,transparent 23%,transparent 74%,#a3ff68 74%,#a3ff68 91%,transparent 91%);box-shadow:0 0 13px rgba(163,255,104,.42)}
+.navstatus{animation:signalPulse 2.8s steps(2,end) infinite}
+.terminal,.product-card,.checkout-window{position:relative;overflow:hidden}
+.terminal:after,.product-card:after{content:"";position:absolute;top:0;left:-120%;width:55%;height:100%;pointer-events:none;background:linear-gradient(100deg,transparent,rgba(163,255,104,.035),transparent);transform:skewX(-14deg);animation:signalSweep 9s ease-in-out infinite}
+.product-card:nth-child(3n):after{animation-delay:2.4s}.product-card:nth-child(3n + 1):after{animation-delay:4.2s}
+.hero h1{ text-shadow:0 0 24px rgba(128,207,255,.08)}
+.eyebrow:before{content:"⟦ ";color:var(--signal);opacity:.8}
+.eyebrow:after{content:" ⟧";color:var(--signal);opacity:.8}
+.catalog-search:focus{box-shadow:0 0 0 2px rgba(163,255,104,.12),0 0 22px rgba(163,255,104,.08)}
+.btn,.product-buy,.catalog-tab,.cart-launch,.cart-checkout{transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease}
+.btn:hover,.product-buy:hover,.catalog-tab:hover,.cart-launch:hover,.cart-checkout:hover{box-shadow:0 0 18px rgba(128,207,255,.09);transform:translateY(-1px)}
+.signal-readout{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-top:18px;padding:10px 12px;border:1px solid #23372b;background:rgba(5,13,8,.75);font:10px/1.6 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:1.1px;color:#7f9184}
+.signal-readout strong{color:var(--signal);font-weight:500}.signal-readout .signal-value{color:var(--signal-blue)}
+.signal-dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--signal);box-shadow:0 0 8px var(--signal);margin-right:7px;animation:signalPulse 1.4s steps(2,end) infinite}
+.ticker{border-top:1px solid #22352a;border-bottom:1px solid #22352a}
+.product-top,.termhead,.checkout-head{letter-spacing:.8px}
+.redacted{background:repeating-linear-gradient(110deg,#29312b 0 6px,#18231b 6px 9px)}
+::selection{background:#a3ff68;color:#071007}
+@keyframes signalPulse{0%,100%{opacity:1}50%{opacity:.48}}
+@keyframes signalSweep{0%,72%,100%{left:-120%}84%{left:150%}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation:none!important;transition:none!important}body:before{opacity:.18}}
+
 </style>
 </head>
 <body>
@@ -137,7 +166,8 @@ body{line-height:1.65;letter-spacing:.05px}
 </section></div>
 <main>
 <section class="wrap hero" id="start">
-<div><div class="eyebrow">[ NODE GM-01 · ROUTE MASKED ]</div><h1>ZUGANG<br><span>NICHT GEFUNDEN.</span></h1><p>Ein stiller Knoten. Ein begrenzter Katalog. Identitäten und Routen bleiben <span class="redacted">████████████</span>. Nur das Nötigste ist sichtbar.</p><div class="actions"><a class="btn primary" href="#angebote">KATALOG ÖFFNEN ↓</a></div></div>
+<div><div class="eyebrow">[ NODE GM-01 · ROUTE MASKED ]</div>
+<div class="signal-readout" aria-label="Systemstatus"><span><i class="signal-dot"></i>CHANNEL: <strong>OBSCURA-7</strong></span><span>KEY: <span class="signal-value" id="signalKey">0x--</span></span><span>SYNC: <span class="signal-value" id="signalClock">--:--:-- UTC</span></span></div><h1>ZUGANG<br><span>NICHT GEFUNDEN.</span></h1><p>Ein stiller Knoten. Ein begrenzter Katalog. Identitäten und Routen bleiben <span class="redacted">████████████</span>. Nur das Nötigste ist sichtbar.</p><div class="actions"><a class="btn primary" href="#angebote">KATALOG ÖFFNEN ↓</a></div></div>
 <aside class="terminal" aria-label="LIDEL Systemterminal"><div class="termhead"><span>unknown@node-??:~</span><b>SESSION MASKED</b></div><div class="termcontent" id="terminaltext"><div class="termline">&gt; handshake ........ <em>OK</em></div><div class="termline">&gt; route ............ <span class="amber">[REDACTED]</span></div><div class="termline">&gt; identity ......... <span class="amber">NULL</span></div><div class="termline">&gt; trace status ..... <em>NOT FOUND</em></div><div class="termline">&gt; market access .... <em>PUBLIC MIRROR</em></div><div class="termline">&gt; session key ...... <span class="amber">████-████-████</span></div><div class="termline">&gt; <span class="cursor"></span></div></div></aside>
 </section>
 <div class="ticker"><div class="wrap">NODE STATUS <b>●</b> MIRROR ACTIVE <b>///</b> ROUTE: [REDACTED] <b>///</b> IDENTITY: UNKNOWN <b>///</b> TRACE: NOT FOUND <b>///</b> END OF PUBLIC FEED</div></div>
@@ -240,6 +270,24 @@ document.getElementById("checkoutX").addEventListener("click",closeCheckout);doc
 function initializeLidelCatalog(){try{if(!document.getElementById("productGrid"))return;renderProducts();renderBasket();}catch(error){const count=document.getElementById("productCount");if(count)count.textContent="Katalog konnte nicht geladen werden – bitte Seite neu laden.";console.error("LIDEL catalog initialization failed:",error)}}
 if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",initializeLidelCatalog,{once:true});}else{initializeLidelCatalog();}
 window.addEventListener("load",initializeLidelCatalog,{once:true});
+
+
+
+// Ephemeral signal noise: decorative only; no tracking or data transmission.
+(function initSignalLayer(){
+ const keyNode=document.getElementById("signalKey");
+ const clockNode=document.getElementById("signalClock");
+ if(!keyNode||!clockNode)return;
+ const alphabet="0123456789ABCDEF";
+ const updateSignal=()=>{
+   let token="0x";
+   for(let i=0;i<8;i++)token+=alphabet[Math.floor(Math.random()*alphabet.length)];
+   keyNode.textContent=token;
+   clockNode.textContent=new Date().toISOString().slice(11,19)+" UTC";
+ };
+ updateSignal();
+ setInterval(updateSignal,2300);
+})();
 
 </script>
 </body>
