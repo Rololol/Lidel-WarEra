@@ -205,6 +205,30 @@ body:after{content:"";position:fixed;inset:0;z-index:89;pointer-events:none;back
  .checkout-footnote{margin-top:16px}
 }
 
+
+/* BLUE ICE / encrypted checkout interface */
+:root{--signal:#69caff;--signal-blue:#69caff;--signal-dim:#234f70}
+.checkout-window{background:radial-gradient(ellipse at 50% 0%,#0a1a2b 0%,#050b13 62%);border-color:#28567a;box-shadow:0 0 0 1px #69caff18,0 0 28px #168bff16,0 25px 100px #000e,inset 0 0 55px #168bff0b}
+.checkout-head{border-bottom-color:#1e3b53}
+.checkout-head span:first-child:before{color:#69caff;text-shadow:0 0 9px #69caff}
+.checkout-head span:nth-child(2){color:#8ccfff;text-shadow:0 0 10px #168bff40}
+.checkout-line{border-bottom-color:#142a3b}
+.checkout-line .green,.checkout-content .green{color:#83d3ff!important;text-shadow:0 0 9px #168bff38}
+.checkout-items li{border-left-color:#2c76a4;color:#b9d7e9}
+.checkout-action{background:linear-gradient(135deg,#a3e2ff,#58b8ff 55%,#2588d4)!important;color:#03111e!important;border-color:#78ceff!important;box-shadow:0 0 24px #168bff2b,inset 0 0 12px #fff4}
+.checkout-action:before{background:repeating-linear-gradient(0deg,transparent 0 4px,rgba(0,25,50,.09) 5px)}
+.checkout-action.secondary{background:#071421!important;color:#9bdcff!important;border-color:#244a66!important;box-shadow:inset 0 0 18px #168bff0c}
+.checkout-footnote{color:#637f95}
+.checkout-window:after{background:repeating-linear-gradient(0deg,transparent 0 4px,rgba(105,202,255,.025) 5px);opacity:.7}
+.signal-readout{border-color:#21435c;background:rgba(4,13,23,.82)}
+.signal-readout strong,.signal-readout .signal-value{color:#80d2ff;text-shadow:0 0 8px #168bff36}
+.signal-dot{background:#69caff;box-shadow:0 0 9px #69caff}
+.topline{background:linear-gradient(90deg,#69caff 0%,#69caff 14%,transparent 14%,transparent 20%,#b0e8ff 20%,#b0e8ff 23%,transparent 23%,transparent 74%,#69caff 74%,#69caff 91%,transparent 91%);box-shadow:0 0 13px #168bff60}
+.product-card:hover:before{background:linear-gradient(transparent 48%,#69caff13 50%,transparent 52%);background-size:100% 7px}
+::selection{background:#69caff;color:#03111e}
+@keyframes headingNoise{0%,94%,96%,100%{transform:translateX(0);text-shadow:0 0 24px rgba(105,202,255,.14)}95%{transform:translateX(1px);text-shadow:-2px 0 #69caff,2px 0 #c1edff}}
+@media(max-width:520px){.checkout-window{border-color:#28567a}.checkout-head span:nth-child(2){color:#8ccfff}}
+
 </style>
 </head>
 <body>
