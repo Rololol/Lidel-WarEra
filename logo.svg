@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title">
+<title id="title">LIDEL Logo</title>
+<rect width="512" height="512" fill="#0754a6"/>
+<circle cx="256" cy="256" r="245" fill="#ed001b"/>
+<circle cx="256" cy="256" r="224" fill="#ffed00"/>
+<g fill="#0754a6">
+<path d="M72 216h62v20h-12v47h12v19H72v-19h11v-47H72z"/>
+<path d="M196 216h55c38 0 57 18 57 43s-19 43-57 43h-55v-19h11v-47h-11zm48 27v32h6c10 0 16-6 16-16s-6-16-16-16z"/>
+<path d="M317 216h92v21h-27l-8-9h-18v13h29v19h-29v13h18l9-9h26v21h-92v-19h10v-47h-10z"/>
+<path d="M415 216h59v20h-11v47h11v19h-59v-19h11v-47h-11z"/>
+</g>
+<circle cx="164" cy="199" r="26" fill="#ed001b"/>
+<path d="M164 230l39 39-39 39-39-39z" fill="#ed001b"/>
+</svg>
